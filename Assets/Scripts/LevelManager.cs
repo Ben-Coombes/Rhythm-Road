@@ -57,13 +57,16 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        elapsedTime += Time.deltaTime;
-
-        if (elapsedTime > secondsBetweenSpawn)
+        if(currentWave < maxWaves)
         {
-            elapsedTime = 0;
-            SpawnObstacles();
+            elapsedTime += Time.deltaTime;
 
+            if (elapsedTime > secondsBetweenSpawn)
+            {
+                elapsedTime = 0;
+                SpawnObstacles();
+
+            }
         }
     }
 

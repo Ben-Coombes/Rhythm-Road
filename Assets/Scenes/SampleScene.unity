@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e4221062b10c25469a8f7767089d985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsBetweenSpawn: 10
+  secondsBetweenSpawn: 2
   elapsedTime: 0
   currentWave: 0
   maxWaves: 0
