@@ -737,6 +737,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5901251672656159704, guid: d20b5e7dc85faad42bb233d0960fbc09, type: 3}
+      propertyPath: jumpHeight
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901251672656159704, guid: d20b5e7dc85faad42bb233d0960fbc09, type: 3}
+      propertyPath: playerHeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901251672656159704, guid: d20b5e7dc85faad42bb233d0960fbc09, type: 3}
+      propertyPath: whatIsGround.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5901251672656159705, guid: d20b5e7dc85faad42bb233d0960fbc09, type: 3}
       propertyPath: m_Name
       value: Player
