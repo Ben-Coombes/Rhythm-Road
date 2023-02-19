@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other + "hit");
+        //Debug.Log(other + "hit");
         if (other.gameObject.tag == "Obstacle")
         {
             Destroy(this.gameObject);

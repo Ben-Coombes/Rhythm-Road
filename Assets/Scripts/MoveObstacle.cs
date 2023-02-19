@@ -9,7 +9,7 @@ public class MoveObstacle : MonoBehaviour
     void FixedUpdate()
     {
         Move();
-        //Debug.Log(100/(speed * Time.fixedDeltaTime)); // = 500
+        //Debug.Log(100/speed) // get time till player
     }
 
     public void Move()

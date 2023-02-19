@@ -30,7 +30,7 @@ public class LevelManager : MonoBehaviour
         while(!reader.EndOfStream)
         {
             string[] line = reader.ReadLine().Split(",");
-            Debug.Log(line);
+            //Debug.Log(line);
             List<GameObject> tempObjs = new();
             for (int i = 0; i < line.Length; i++)
             {
