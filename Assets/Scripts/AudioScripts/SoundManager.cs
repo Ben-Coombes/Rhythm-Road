@@ -27,6 +27,12 @@ public class SoundManager : MonoBehaviour
         s.source.Play();
     }
 
+    public void PlayScheduled(string name, float time)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        s.source.PlayScheduled(time);
+    }
+
     public void Stop(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);

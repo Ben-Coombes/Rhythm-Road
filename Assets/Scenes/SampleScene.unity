@@ -436,6 +436,7 @@ MonoBehaviour:
   - 0
   - 3
   text: {fileID: 514534416}
+  noteTimes: []
 --- !u!1 &676727929
 GameObject:
   m_ObjectHideFlags: 0
@@ -1093,8 +1094,13 @@ MonoBehaviour:
   audioMixer: {fileID: 24300002, guid: 700c813b759b5b24e8a611f9e7789ac1, type: 2}
   sounds:
   - name: SoundTrack1
-    clip: {fileID: 8300000, guid: 1072cc803e48fc341a04643a6fe36093, type: 3}
+    clip: {fileID: 8300000, guid: 961b73e395123a6418d4d95ccebc2308, type: 3}
     volume: 0.215
+    loop: 0
+    source: {fileID: 0}
+  - name: HitSound
+    clip: {fileID: 8300000, guid: 52f7904404cf41b42a7893de7cb012dd, type: 3}
+    volume: 0.694
     loop: 0
     source: {fileID: 0}
 --- !u!1001 &5901251673072682783
