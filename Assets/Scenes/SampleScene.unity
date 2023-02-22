@@ -426,6 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb82c4503d3584d4e8712ca9453f39ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: 85
   obstacles:
   - {fileID: 11400000, guid: 080072396daa19a4789c53b36026c7c8, type: 2}
   - {fileID: 11400000, guid: 5ca558d6022e92c458df320caefa6675, type: 2}
@@ -1094,13 +1095,18 @@ MonoBehaviour:
   audioMixer: {fileID: 24300002, guid: 700c813b759b5b24e8a611f9e7789ac1, type: 2}
   sounds:
   - name: SoundTrack1
-    clip: {fileID: 8300000, guid: 961b73e395123a6418d4d95ccebc2308, type: 3}
-    volume: 0.215
+    clip: {fileID: 8300000, guid: f864ac9e16683e94ebb8d43411dedba2, type: 3}
+    volume: 0.452
     loop: 0
     source: {fileID: 0}
   - name: HitSound
     clip: {fileID: 8300000, guid: 52f7904404cf41b42a7893de7cb012dd, type: 3}
-    volume: 0.694
+    volume: 0.241
+    loop: 0
+    source: {fileID: 0}
+  - name: HitSound2
+    clip: {fileID: 8300000, guid: 52f7904404cf41b42a7893de7cb012dd, type: 3}
+    volume: 0.241
     loop: 0
     source: {fileID: 0}
 --- !u!1001 &5901251673072682783

@@ -8,17 +8,19 @@ public class Conductor : MonoBehaviour
 {
     float songposition;
     float startSongPosition;
+    public float offset = 35;
     public List<ObstacleData> obstacles;
     public List<float> laneXPos;
     public TextMeshProUGUI text;
     public List<float> noteTimes;
+    float pitch;
     float noteStartTime;
     int noteCounter = 0;
     // Start is called before the first frame update
     void Start()
     {
         noteTimes = new List<float>();
-        string path = Application.dataPath + "/Level Data/level test.csv";
+        string path = Application.dataPath + "/Level Data/badguytest.csv";
 
         StreamReader reader = new StreamReader(path);
 
@@ -28,7 +30,7 @@ public class Conductor : MonoBehaviour
 
             string[] line = reader.ReadLine().Split(",");
 
-            float timeInMS = float.Parse(line[0]);
+            float timeInMS = float.Parse(line[0]) + offset;
             GameObject objectToSpawn = null;
             int laneNum = int.Parse(line[2]);
 
@@ -49,6 +51,7 @@ public class Conductor : MonoBehaviour
         reader.Close();
 
         FindObjectOfType<SoundManager>().Play("SoundTrack1");
+        pitch = FindObjectOfType<SoundManager>().GetAudioSource("SoundTrack1").pitch;
         startSongPosition = (float)AudioSettings.dspTime;
         noteStartTime = (float)AudioSettings.dspTime + noteTimes[noteCounter];
         FindObjectOfType<SoundManager>().PlayScheduled("HitSound", noteStartTime);
@@ -58,7 +61,7 @@ public class Conductor : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        songposition = (float)AudioSettings.dspTime - startSongPosition;
+        songposition = ((float)AudioSettings.dspTime - startSongPosition) * pitch - offset;
         text.text = songposition.ToString();
         ScheduleHitSounds();
     }
@@ -68,10 +71,17 @@ public class Conductor : MonoBehaviour
         if(AudioSettings.dspTime > noteStartTime)
         {
             noteStartTime = startSongPosition + noteTimes[noteCounter];
-            FindObjectOfType<SoundManager>().PlayScheduled("HitSound", noteStartTime);
+            if(noteCounter%2 == 0)
+            {
+                FindObjectOfType<SoundManager>().PlayScheduled("HitSound", noteStartTime);
+                
+
+            } else
+            {
+                FindObjectOfType<SoundManager>().PlayScheduled("HitSound2", noteStartTime);
+            }
+            
             noteCounter++;
         }
-        //
-        //
     }
 }
