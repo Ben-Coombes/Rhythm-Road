@@ -14,9 +14,14 @@ public class Player : MonoBehaviour
     public float playerHeight;
     public float jumpHeight = 15;
 
+    [Header("Note Check")]
+    public bool isInNote;
+    public Note note;
+
     // Start is called before the first frame update
     void Start()
     {
+        isInNote = false;
         rb = GetComponent<Rigidbody>();
         lanePos = 1;
     }
@@ -106,6 +111,20 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "Obstacle")
         {
             KillPlayer();
+        }
+
+        if (other.gameObject.tag == "Note")
+        {
+            isInNote = true;
+            note = other.gameObject.GetComponent<Note>();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Note")
+        {
+            isInNote = false;
         }
     }
 }
