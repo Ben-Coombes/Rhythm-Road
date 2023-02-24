@@ -6,6 +6,7 @@ using TMPro;
 
 public class Conductor : MonoBehaviour
 {
+    public static Conductor Instance { get; private set; }
     float songposition;
     float startSongPosition;
     public float offset = 35;
@@ -17,6 +18,20 @@ public class Conductor : MonoBehaviour
     float noteStartTime;
     int noteCounter = 0;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        // If there is an instance, and it's not me, delete myself.
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+
+    }
     void Start()
     {
         noteTimes = new List<float>();
