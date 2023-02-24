@@ -8,7 +8,7 @@ public class Conductor : MonoBehaviour
 {
     public static Conductor Instance { get; private set; }
     float songposition;
-    float startSongPosition;
+    public float startSongPosition;
     public float offset = 35;
     public List<ObstacleData> obstacles;
     public List<float> laneXPos;
@@ -34,6 +34,9 @@ public class Conductor : MonoBehaviour
     }
     void Start()
     {
+        float speed;
+        GameObject obj;
+        float zPos;
         noteTimes = new List<float>();
         string path = Application.dataPath + "/Level Data/badguytest.csv";
 
@@ -56,12 +59,21 @@ public class Conductor : MonoBehaviour
                     objectToSpawn = obstacle.obj;
                 }
             }
-            noteTimes.Add(timeInMS / 1000);
-            GameObject obj = Instantiate(objectToSpawn);
-            float speed = obj.GetComponent<MoveObstacle>().speed;
-
-            float zPos = timeInMS / (1f / speed * 1000);
-            obj.transform.position = new Vector3(laneXPos[laneNum], obj.transform.position.y, zPos);
+            if(line[1] == "N")
+            {
+                noteTimes.Add(timeInMS / 1000);
+                obj = Instantiate(objectToSpawn);
+                speed = obj.GetComponent<Note>().speed;
+                obj.GetComponent<Note>().time = timeInMS / 1000;
+                zPos = timeInMS / (1f / speed * 1000);
+                obj.transform.position = new Vector3(laneXPos[laneNum], obj.transform.position.y, zPos);
+            } else
+            {
+                obj = Instantiate(objectToSpawn);
+                speed = obj.GetComponent<MoveObstacle>().speed;
+                zPos = timeInMS / (1f / speed * 1000);
+                obj.transform.position = new Vector3(laneXPos[laneNum], obj.transform.position.y, zPos);
+            } 
         }
         reader.Close();
 
@@ -78,7 +90,7 @@ public class Conductor : MonoBehaviour
     {
         songposition = ((float)AudioSettings.dspTime - startSongPosition) * pitch - offset;
         text.text = songposition.ToString();
-        ScheduleHitSounds();
+        //ScheduleHitSounds();
     }
 
     void ScheduleHitSounds()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,32 +37,58 @@ public class Player : MonoBehaviour
     public void CheckInput()
     {
         
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             if (lanePos > 0)
             {
                 MoveLeft();
             }
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             if (lanePos < 2)
             {
                 MoveRight();
             }
         }
-        if (Input.GetKeyUp(KeyCode.S))
+        if (Input.GetKeyUp(KeyCode.DownArrow))
         {
             Crouch(false);
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             Crouch(true);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
             Jump();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            HitNote();
+        }
+    }
+
+    private void HitNote()
+    {
+        if(isInNote && note != null)
+        {
+            float noteTime = Conductor.Instance.startSongPosition + note.time;
+            float keyHitTime = (float)AudioSettings.dspTime;
+            string lastSource = "HitSound";
+            if(lastSource == "HitSound")
+            {
+                FindObjectOfType<SoundManager>().Play("HitSound2");
+                lastSource = "HitSound2";
+            } else
+            {
+                FindObjectOfType<SoundManager>().Play("HitSound");
+                lastSource = "HitSound";
+            }
+            Destroy(note.gameObject);
+            Debug.Log($"Hit Time: {keyHitTime} Note Time: {noteTime} Difference: {keyHitTime - noteTime}");
         }
     }
 
