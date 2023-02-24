@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
     public int lanePos;
     public float laneThickness = 3;
     Rigidbody rb;
+
+    public TextMeshProUGUI text;
 
     [Header("Ground Check")]
     private bool isGrounded;
@@ -18,6 +21,7 @@ public class Player : MonoBehaviour
     [Header("Note Check")]
     public bool isInNote;
     public Note note;
+    public List<float> noteHits;
 
     // Start is called before the first frame update
     void Start()
@@ -78,6 +82,8 @@ public class Player : MonoBehaviour
             float noteTime = Conductor.Instance.startSongPosition + note.time;
             float keyHitTime = (float)AudioSettings.dspTime;
             string lastSource = "HitSound";
+            noteHits.Add(keyHitTime - noteTime);
+            UpdateText();
             if(lastSource == "HitSound")
             {
                 FindObjectOfType<SoundManager>().Play("HitSound2");
@@ -90,6 +96,18 @@ public class Player : MonoBehaviour
             Destroy(note.gameObject);
             Debug.Log($"Hit Time: {keyHitTime} Note Time: {noteTime} Difference: {keyHitTime - noteTime}");
         }
+    }
+
+    private void UpdateText()
+    {
+        float total = 0;
+        foreach(float hitTime in noteHits)
+        {
+            total += hitTime;
+        }
+        total /= noteHits.Count;
+
+        text.text = total.ToString();
     }
 
     public void MoveLeft()
