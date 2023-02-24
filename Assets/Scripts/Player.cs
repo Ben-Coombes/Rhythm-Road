@@ -68,21 +68,16 @@ public class Player : MonoBehaviour
         {
             Jump();
         }
-
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            HitNote();
-        }
     }
 
-    private void HitNote()
+    public void HitNote()
     {
         if(isInNote && note != null)
         {
             float noteTime = Conductor.Instance.startSongPosition + note.time;
             float keyHitTime = (float)AudioSettings.dspTime;
             string lastSource = "HitSound";
-            noteHits.Add(keyHitTime - noteTime);
+            noteHits.Add(Math.Abs(keyHitTime - noteTime));
             UpdateText();
             if(lastSource == "HitSound")
             {
@@ -107,7 +102,7 @@ public class Player : MonoBehaviour
         }
         total /= noteHits.Count;
 
-        text.text = total.ToString();
+        text.text = Math.Round(total * 1000, 0).ToString();
     }
 
     public void MoveLeft()
