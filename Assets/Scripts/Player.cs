@@ -92,6 +92,12 @@ public class Player : MonoBehaviour
         
     }
 
+    public void KillPlayer()
+    {
+        GameManager.Instance.RestartGame();
+        Destroy(this.gameObject);
+    }
+
     
 
     private void OnTriggerEnter(Collider other)
@@ -99,7 +105,7 @@ public class Player : MonoBehaviour
         //Debug.Log(other + "hit");
         if (other.gameObject.tag == "Obstacle")
         {
-            Destroy(this.gameObject);
+            KillPlayer();
         }
     }
 }
