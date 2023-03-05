@@ -98,10 +98,10 @@ Material:
     - _AlphaClip: 0
     - _AlphaClipThreshold: 0.1
     - _AlphaNoiseScale: 100
-    - _AlphaSpeed: 0.1
+    - _AlphaSpeed: 0.05
     - _Blend: 0
     - _BorderAmount: 0.1
-    - _BorderBrightness: 1
+    - _BorderBrightness: 0.5
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -119,7 +119,7 @@ Material:
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RainbowBrightness: 2
+    - _RainbowBrightness: 1.8
     - _RainbowSpeed: 0.5
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
