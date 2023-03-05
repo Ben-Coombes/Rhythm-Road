@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.003824667, g: 0.0036167614, b: 0.0027034616, a: 1}
+  m_IndirectSpecularColor: {r: 0.0037682643, g: 0.003557808, b: 0.002642311, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1111,7 +1111,7 @@ MonoBehaviour:
   sounds:
   - name: SoundTrack1
     clip: {fileID: 8300000, guid: 88ef053aa3ffd704f9c2785f0ea36af5, type: 3}
-    volume: 0.072
+    volume: 0.17
     loop: 0
     source: {fileID: 0}
   - name: HitSound
