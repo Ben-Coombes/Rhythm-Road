@@ -38,7 +38,7 @@ public class Conductor : MonoBehaviour
         GameObject obj;
         float zPos;
         noteTimes = new List<float>();
-        string path = Application.dataPath + "/Level Data/badguytest.csv";
+        string path = Application.dataPath + "/Audio/Songs/Rainbow Road/rainbowroad.csv";
 
         StreamReader reader = new StreamReader(path);
 
@@ -89,7 +89,7 @@ public class Conductor : MonoBehaviour
     void FixedUpdate()
     {
         songposition = ((float)AudioSettings.dspTime - startSongPosition) * pitch - offset;
-        text.text = songposition.ToString();
+        text.text = $"{songposition + offset}";
         //ScheduleHitSounds();
     }
 
