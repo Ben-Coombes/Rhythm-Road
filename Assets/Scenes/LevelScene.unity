@@ -536,7 +536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startSongPosition: 0
-  offset: 85
+  offset: 27
   obstacles:
   - {fileID: 11400000, guid: 080072396daa19a4789c53b36026c7c8, type: 2}
   - {fileID: 11400000, guid: 5ca558d6022e92c458df320caefa6675, type: 2}
@@ -1066,17 +1066,17 @@ MonoBehaviour:
   sounds:
   - name: SoundTrack1
     clip: {fileID: 8300000, guid: 88ef053aa3ffd704f9c2785f0ea36af5, type: 3}
-    volume: 0.103
+    volume: 0.072
     loop: 0
     source: {fileID: 0}
   - name: HitSound
     clip: {fileID: 8300000, guid: 52f7904404cf41b42a7893de7cb012dd, type: 3}
-    volume: 0.21
+    volume: 0.249
     loop: 0
     source: {fileID: 0}
   - name: HitSound2
     clip: {fileID: 8300000, guid: 52f7904404cf41b42a7893de7cb012dd, type: 3}
-    volume: 0.241
+    volume: 0.246
     loop: 0
     source: {fileID: 0}
 --- !u!1 &1815262503
