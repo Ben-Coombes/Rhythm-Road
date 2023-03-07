@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using TMPro;
+using System;
 
 public class Conductor : MonoBehaviour
 {
@@ -38,44 +39,49 @@ public class Conductor : MonoBehaviour
         GameObject obj;
         float zPos;
         noteTimes = new List<float>();
-        string path = Application.dataPath + "/Audio/Songs/Rainbow Road/rainbowroad.csv";
+        var file = Resources.Load<TextAsset>("Rainbow Road/rainbowroad");
 
-        StreamReader reader = new StreamReader(path);
+        string[] lines = file.text.Split(
+        new string[] { "\r\n", "\r", "\n" },
+    StringSplitOptions.None
+);
 
 
-        while (!reader.EndOfStream)
+        foreach (string str in lines)
         {
-
-            string[] line = reader.ReadLine().Split(",");
-
-            float timeInMS = float.Parse(line[0]) + offset;
-            GameObject objectToSpawn = null;
-            int laneNum = int.Parse(line[2]);
-
-            foreach (ObstacleData obstacle in obstacles)
+            if (str.Length > 1)
             {
-                if (obstacle.key == line[1])
+                string[] line = str.Split(",");
+
+                float timeInMS = float.Parse(line[0]) + offset;
+                GameObject objectToSpawn = null;
+                int laneNum = int.Parse(line[2]);
+
+                foreach (ObstacleData obstacle in obstacles)
                 {
-                    objectToSpawn = obstacle.obj;
+                    if (obstacle.key == line[1])
+                    {
+                        objectToSpawn = obstacle.obj;
+                    }
+                }
+                if (line[1] == "N")
+                {
+                    noteTimes.Add(timeInMS / 1000);
+                    obj = Instantiate(objectToSpawn);
+                    speed = obj.GetComponent<Note>().speed;
+                    obj.GetComponent<Note>().time = timeInMS / 1000;
+                    zPos = timeInMS / (1f / speed * 1000);
+                    obj.transform.position = new Vector3(laneXPos[laneNum], obj.transform.position.y, zPos);
+                }
+                else
+                {
+                    obj = Instantiate(objectToSpawn);
+                    speed = obj.GetComponent<MoveObstacle>().speed;
+                    zPos = timeInMS / (1f / speed * 1000);
+                    obj.transform.position = new Vector3(laneXPos[laneNum], obj.transform.position.y, zPos);
                 }
             }
-            if(line[1] == "N")
-            {
-                noteTimes.Add(timeInMS / 1000);
-                obj = Instantiate(objectToSpawn);
-                speed = obj.GetComponent<Note>().speed;
-                obj.GetComponent<Note>().time = timeInMS / 1000;
-                zPos = timeInMS / (1f / speed * 1000);
-                obj.transform.position = new Vector3(laneXPos[laneNum], obj.transform.position.y, zPos);
-            } else
-            {
-                obj = Instantiate(objectToSpawn);
-                speed = obj.GetComponent<MoveObstacle>().speed;
-                zPos = timeInMS / (1f / speed * 1000);
-                obj.transform.position = new Vector3(laneXPos[laneNum], obj.transform.position.y, zPos);
-            } 
         }
-        reader.Close();
 
         FindObjectOfType<SoundManager>().Play("SoundTrack1");
         pitch = FindObjectOfType<SoundManager>().GetAudioSource("SoundTrack1").pitch;
