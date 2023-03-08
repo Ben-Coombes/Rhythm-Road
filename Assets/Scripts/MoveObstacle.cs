@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveObstacle : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = 20f;
     // Update is called once per frame
     void FixedUpdate()
     {

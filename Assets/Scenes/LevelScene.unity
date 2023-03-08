@@ -2049,6 +2049,10 @@ PrefabInstance:
       propertyPath: jumpHeight
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5901251672656159704, guid: d20b5e7dc85faad42bb233d0960fbc09, type: 3}
+      propertyPath: laneChangeSpeed
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 5901251672656159705, guid: d20b5e7dc85faad42bb233d0960fbc09, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2353,7 +2357,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4815572523338675800}
-  m_LocalRotation: {x: -0.11585465, y: 0.012060821, z: -0.012696253, w: 0.9931118}
+  m_LocalRotation: {x: -0.11585466, y: 0.012060821, z: -0.012696254, w: 0.9931118}
   m_LocalPosition: {x: -1.11758706e-10, y: 0.011997961, z: 1.4901161e-10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

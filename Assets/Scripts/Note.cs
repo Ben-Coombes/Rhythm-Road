@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Note : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = 20f;
     public float time;
     // Update is called once per frame
     void FixedUpdate()

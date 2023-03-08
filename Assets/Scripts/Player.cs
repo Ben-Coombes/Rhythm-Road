@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public int lanePos;
     public float laneThickness = 3;
     Rigidbody rb;
+    public float laneChangeSpeed;
 
     public TextMeshProUGUI text;
 
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
     public float playerHeight;
     public float jumpHeight = 15;
     public bool canSlide = true;
+    public bool canMove = true;
 
     [Header("Note Check")]
     public bool isInNote;
@@ -47,14 +49,14 @@ public class Player : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if (lanePos > 0)
+            if (lanePos > 0 && canMove)
             {
                 MoveLeft();
             }
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (lanePos < 2)
+            if (lanePos < 2 && canMove)
             {
                 MoveRight();
             }
@@ -102,21 +104,32 @@ public class Player : MonoBehaviour
         }
         total /= noteHits.Count;
 
-        text.text = Math.Round(total * 1000, 0).ToString();
+        text.text = "Avg MS off: " + Math.Round(total * 1000, 0).ToString();
     }
 
     public void MoveLeft()
     {
         lanePos--;
-        transform.position = new Vector3(transform.position.x - laneThickness, transform.position.y, transform.position.z);
+        StartCoroutine(ChangeLane(new Vector3(transform.position.x - laneThickness, transform.position.y, transform.position.z)));
     }
 
     public void MoveRight()
     {
         lanePos++;
-        transform.position = new Vector3(transform.position.x + laneThickness, transform.position.y, transform.position.z);
+        StartCoroutine(ChangeLane(new Vector3(transform.position.x + laneThickness, transform.position.y, transform.position.z)));
     }
 
+    private IEnumerator ChangeLane(Vector3 target)
+    {
+        while(Vector3.Distance(transform.position, target) > 0.1f) {
+            canMove = false;
+            transform.position = Vector3.Lerp(transform.position, target, laneChangeSpeed * Time.deltaTime);
+            yield return new WaitForFixedUpdate();
+        }
+        canMove = true;
+        transform.position = target;
+        yield return null;
+    }
     public void Slide()
     {
         canSlide = false;
