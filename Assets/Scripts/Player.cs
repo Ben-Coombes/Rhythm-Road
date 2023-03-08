@@ -17,11 +17,14 @@ public class Player : MonoBehaviour
     public LayerMask whatIsGround;
     public float playerHeight;
     public float jumpHeight = 15;
+    public bool canSlide = true;
 
     [Header("Note Check")]
     public bool isInNote;
     public Note note;
     public List<float> noteHits;
+
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +38,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        anim.SetBool("isGrounded", isGrounded);
         CheckInput();
     }
 
@@ -55,13 +59,9 @@ public class Player : MonoBehaviour
                 MoveRight();
             }
         }
-        if (Input.GetKeyUp(KeyCode.DownArrow))
-        {
-            Crouch(false);
-        }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            Crouch(true);
+            Slide();
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
@@ -117,24 +117,29 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(transform.position.x + laneThickness, transform.position.y, transform.position.z);
     }
 
-    public void Crouch(bool isKeyDown)
+    public void Slide()
     {
-        if (isKeyDown)
-        {
-            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y / 2, transform.localScale.z);
-            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
-        }
-        else
-        {
-            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y * 2, transform.localScale.z);
-        }
+        canSlide = false;
+        anim.SetBool("isSliding", true);
+        float length = anim.GetCurrentAnimatorClipInfo(0).Length;
+        StartCoroutine(StartSlide(length));
+    }
+
+    private IEnumerator StartSlide(float length)
+    {
+        GetComponent<CapsuleCollider>().height = 1;
+        GetComponent<CapsuleCollider>().center = new Vector3(0, -0.5f, 0);
+        yield return new WaitForSeconds(length);
+        anim.SetBool("isSliding", false);
+        canSlide = true;
+        GetComponent<CapsuleCollider>().height = 2;
+        GetComponent<CapsuleCollider>().center = new Vector3(0, 0, 0);
     }
 
     public void Jump()
     {
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-        
     }
 
     public void KillPlayer()
