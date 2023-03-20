@@ -87,7 +87,7 @@ public class Conductor : MonoBehaviour
         pitch = FindObjectOfType<SoundManager>().GetAudioSource("SoundTrack1").pitch;
         startSongPosition = (float)AudioSettings.dspTime;
         noteStartTime = (float)AudioSettings.dspTime + noteTimes[noteCounter];
-        FindObjectOfType<SoundManager>().PlayScheduled("HitSound", noteStartTime);
+        //FindObjectOfType<SoundManager>().PlayScheduled("HitSound", noteStartTime);
         noteCounter++;
     }
 
@@ -97,6 +97,14 @@ public class Conductor : MonoBehaviour
         songposition = ((float)AudioSettings.dspTime - startSongPosition) * pitch - offset;
         text.text = $"{songposition + offset}";
         //ScheduleHitSounds();
+        if (PausedMenu.GameIsPaused)
+        {
+            
+        }
+        else
+        {
+           
+        }
     }
 
     void ScheduleHitSounds()

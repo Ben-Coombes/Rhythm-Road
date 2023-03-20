@@ -29,7 +29,8 @@ public class PausedMenu : MonoBehaviour
 
     public void Resume()
     {
-
+        AudioListener.pause = false;
+        //FindObjectOfType<SoundManager>().Play("SoundTrack1");
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
         Time.timeScale = 1.0f;
@@ -46,6 +47,7 @@ public class PausedMenu : MonoBehaviour
 
     public void Pause()
     {
+        AudioListener.pause = true;
         Time.timeScale = 0f;
         GameIsPaused = true;
         pauseMenu.SetActive(true);
