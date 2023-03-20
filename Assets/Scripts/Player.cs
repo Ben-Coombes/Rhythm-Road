@@ -78,7 +78,8 @@ public class Player : MonoBehaviour
         {
             float noteTime = Conductor.Instance.startSongPosition + note.time;
             float keyHitTime = (float)AudioSettings.dspTime;
-            string lastSource = "HitSound";
+            Events.onNoteHit.Invoke(Math.Abs(keyHitTime - noteTime), note);
+            /*string lastSource = "HitSound";
             noteHits.Add(Math.Abs(keyHitTime - noteTime));
             UpdateText();
             if(lastSource == "HitSound")
@@ -90,8 +91,8 @@ public class Player : MonoBehaviour
                 FindObjectOfType<SoundManager>().Play("HitSound");
                 lastSource = "HitSound";
             }
-            Destroy(note.gameObject);
-            Debug.Log($"Hit Time: {keyHitTime} Note Time: {noteTime} Difference: {keyHitTime - noteTime}");
+            
+            Debug.Log($"Hit Time: {keyHitTime} Note Time: {noteTime} Difference: {keyHitTime - noteTime}");*/
         }
     }
 
