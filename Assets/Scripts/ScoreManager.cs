@@ -28,6 +28,7 @@ public class ScoreManager : MonoBehaviour
     }
     private void OnNoteHit(float hitWindow, Note note)
     {
+        FindObjectOfType<SoundManager>().PlayOneShot("HitSound");
         int hitValue = CalculateHitValue(hitWindow);
 
         int comboMultiplier = 0;

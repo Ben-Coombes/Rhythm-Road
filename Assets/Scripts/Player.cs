@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using static UnityEngine.InputSystem.InputAction;
 
 public class Player : MonoBehaviour
 {
@@ -72,9 +73,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void HitNote()
+    public void HitNote(CallbackContext ctx)
     {
-        if(isInNote && note != null)
+        
+        if(isInNote && note != null && ctx.performed)
         {
             float noteTime = Conductor.Instance.startSongPosition + note.time;
             float keyHitTime = (float)AudioSettings.dspTime;

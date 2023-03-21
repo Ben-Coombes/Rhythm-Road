@@ -8,7 +8,7 @@ using System;
 public class Conductor : MonoBehaviour
 {
     public static Conductor Instance { get; private set; }
-    float songposition;
+    public float songposition;
     public float startSongPosition;
     public float offset = 35;
     public List<ObstacleData> obstacles;
