@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Crouch
   m_EditorClassIdentifier: 
   key: C
-  obj: {fileID: 3147864428307660584, guid: 5ab0302a114c1e34ba2819ea82e452a3, type: 3}
+  obj: {fileID: 6869557050106134321, guid: 261db1cf6ee8bcb4ea06d890825dbe93, type: 3}
