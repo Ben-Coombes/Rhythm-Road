@@ -124,9 +124,9 @@ public class Player : MonoBehaviour
 
     private IEnumerator ChangeLane(Vector3 target)
     {
-        while(Vector3.Distance(transform.position, target) > 0.1f) {
+        while(transform.position.x - target.x > 0.1f) {
             canMove = false;
-            transform.position = Vector3.Lerp(transform.position, target, laneChangeSpeed * Time.deltaTime);
+            transform.position = new Vector3(Mathf.Lerp(transform.position.x, target.x, laneChangeSpeed * Time.deltaTime), transform.position.y, transform.position.z);
             yield return new WaitForFixedUpdate();
         }
         canMove = true;
