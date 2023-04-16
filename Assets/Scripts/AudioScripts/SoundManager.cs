@@ -1,6 +1,6 @@
-using UnityEngine.Audio;
-using UnityEngine;
 using System;
+using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
@@ -9,6 +9,7 @@ public class SoundManager : MonoBehaviour
 
     void Awake()
     {
+        sounds[0].clip = GameManager.Instance.currentSelectedMusic.songAudio;
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();

@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.IO;
-using TMPro;
 using System;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
 
 public class Conductor : MonoBehaviour
 {
@@ -39,7 +37,7 @@ public class Conductor : MonoBehaviour
         GameObject obj;
         float zPos;
         noteTimes = new List<float>();
-        var file = Resources.Load<TextAsset>("Rainbow Road/rainbowroad");
+        var file = Resources.Load<TextAsset>(GameManager.Instance.currentSelectedMusic.songCSVFilePath);
 
         string[] lines = file.text.Split(
         new string[] { "\r\n", "\r", "\n" },
@@ -83,6 +81,7 @@ public class Conductor : MonoBehaviour
             }
         }
 
+
         FindObjectOfType<SoundManager>().Play("SoundTrack1");
         pitch = FindObjectOfType<SoundManager>().GetAudioSource("SoundTrack1").pitch;
         startSongPosition = (float)AudioSettings.dspTime;
@@ -99,29 +98,30 @@ public class Conductor : MonoBehaviour
         //ScheduleHitSounds();
         if (PausedMenu.GameIsPaused)
         {
-            
+
         }
         else
         {
-           
+
         }
     }
 
     void ScheduleHitSounds()
     {
-        if(AudioSettings.dspTime > noteStartTime)
+        if (AudioSettings.dspTime > noteStartTime)
         {
             noteStartTime = startSongPosition + noteTimes[noteCounter];
-            if(noteCounter%2 == 0)
+            if (noteCounter % 2 == 0)
             {
                 FindObjectOfType<SoundManager>().PlayScheduled("HitSound", noteStartTime);
-                
 
-            } else
+
+            }
+            else
             {
                 FindObjectOfType<SoundManager>().PlayScheduled("HitSound2", noteStartTime);
             }
-            
+
             noteCounter++;
         }
     }
