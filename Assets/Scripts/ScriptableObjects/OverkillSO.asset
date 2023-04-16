@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70eeff80b40533949accac8d1285663b, type: 3}
-  m_Name: Overkill
+  m_Name: OverkillSO
   m_EditorClassIdentifier: 
   songName: Overkill
   songAudio: {fileID: 8300000, guid: 49c1cbc44c3af894b8d5bfd69e746768, type: 3}

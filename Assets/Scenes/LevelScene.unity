@@ -1043,7 +1043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songposition: 0
   startSongPosition: 0
-  offset: -79
+  offset: 0
   obstacles:
   - {fileID: 11400000, guid: 080072396daa19a4789c53b36026c7c8, type: 2}
   - {fileID: 11400000, guid: 5ca558d6022e92c458df320caefa6675, type: 2}
@@ -3814,7 +3814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3418569d0a4ce3644a0d7016b1cfdad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSelectedMusic: {fileID: 11400000, guid: 94aed35ffc3d7b342b14f16f044fc8e7, type: 2}
+  currentSelectedMusic: {fileID: 11400000, guid: 371ea3bb998848b4183996b784a1cc16, type: 2}
 --- !u!114 &2127504490
 MonoBehaviour:
   m_ObjectHideFlags: 0
