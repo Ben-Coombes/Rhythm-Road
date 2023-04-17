@@ -6,7 +6,7 @@ public class MenuController : MonoBehaviour
 
     void Start()
     {
-
+        GameManager.Instance.ChangeState(GameState.Menu);
     }
 
     // Start is called before the first frame update

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Note : MonoBehaviour
@@ -15,7 +13,8 @@ public class Note : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Move();
+        if (GameManager.Instance.currentState == GameState.Playing)
+            Move();
         //Debug.Log(100/speed) // get time till player
     }
 
@@ -23,7 +22,7 @@ public class Note : MonoBehaviour
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - speed * Time.fixedDeltaTime);
 
-       // transform.position = Vector3.Lerp(transform.position, endPositon, Conductor.Instance.songposition - time);
+        // transform.position = Vector3.Lerp(transform.position, endPositon, Conductor.Instance.songposition - time);
     }
 
 

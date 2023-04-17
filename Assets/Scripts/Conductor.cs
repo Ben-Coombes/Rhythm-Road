@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -29,26 +30,45 @@ public class Conductor : MonoBehaviour
         {
             Instance = this;
         }
+        GameManager.Instance.ChangeState(GameState.Countdown);
 
+
+    }
+    IEnumerator StartLevelCountdown()
+    {
+        Debug.Log("Countdown started");
+        startSongPosition = (float)AudioSettings.dspTime;
+        FindObjectOfType<SoundManager>().PlayScheduled("SoundTrack1", startSongPosition + 3);
+        pitch = FindObjectOfType<SoundManager>().GetAudioSource("SoundTrack1").pitch;
+        startSongPosition = (float)AudioSettings.dspTime;
+        yield return new WaitForSeconds(3);
+        GameManager.Instance.ChangeState(GameState.Playing);
+        startSongPosition = (float)AudioSettings.dspTime;
     }
     void Start()
     {
-        float speed;
+        SpawnNotesAndObstacles();
+        StartCoroutine(StartLevelCountdown());
+    }
+    public void StartLevel()
+    {
+
+        pitch = FindObjectOfType<SoundManager>().GetAudioSource("SoundTrack1").pitch;
+        startSongPosition = (float)AudioSettings.dspTime;
+        //noteStartTime = (float)AudioSettings.dspTime + noteTimes[noteCounter];
+        //FindObjectOfType<SoundManager>().PlayScheduled("HitSound", noteStartTime);
+        //noteCounter++;
+    }
+
+    private void SpawnNotesAndObstacles()
+    {
+        float speed, zPos;
         GameObject obj;
-        float zPos;
         noteTimes = new List<float>();
         var file = Resources.Load<TextAsset>(GameManager.Instance.currentSelectedMusic.songCSVFilePath);
-
         string[] lines = file.text.Split(
-        new string[] { "\r\n", "\r", "\n" },
-    StringSplitOptions.None
-);
+        new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
 
-
-
-
-
-        FindObjectOfType<SoundManager>().Play("SoundTrack1");
         foreach (string str in lines)
         {
             if (str.Length > 1)
@@ -72,39 +92,25 @@ public class Conductor : MonoBehaviour
                     obj = Instantiate(objectToSpawn);
                     speed = obj.GetComponent<Note>().speed;
                     obj.GetComponent<Note>().time = timeInMS / 1000;
-                    zPos = (timeInMS - songposition) / (1f / speed * 1000);
+                    zPos = (timeInMS) / (1f / speed * 1000);
                     obj.transform.position = new Vector3(laneXPos[laneNum], obj.transform.position.y, zPos);
                 }
                 else
                 {
                     obj = Instantiate(objectToSpawn);
                     speed = obj.GetComponent<MoveObstacle>().speed;
-                    zPos = (timeInMS - songposition) / (1f / speed * 1000);
+                    zPos = (timeInMS) / (1f / speed * 1000);
                     obj.transform.position = new Vector3(laneXPos[laneNum], obj.transform.position.y, zPos);
                 }
             }
         }
-        pitch = FindObjectOfType<SoundManager>().GetAudioSource("SoundTrack1").pitch;
-        startSongPosition = (float)AudioSettings.dspTime;
-        noteStartTime = (float)AudioSettings.dspTime + noteTimes[noteCounter];
-        //FindObjectOfType<SoundManager>().PlayScheduled("HitSound", noteStartTime);
-        noteCounter++;
     }
-
     // Update is called once per frame
     void FixedUpdate()
     {
         songposition = ((float)AudioSettings.dspTime - startSongPosition) * pitch - offset;
         text.text = $"{songposition + offset}";
         //ScheduleHitSounds();
-        if (PausedMenu.GameIsPaused)
-        {
-
-        }
-        else
-        {
-
-        }
     }
 
     void ScheduleHitSounds()
