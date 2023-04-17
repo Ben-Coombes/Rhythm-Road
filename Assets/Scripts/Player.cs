@@ -2,20 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using static UnityEngine.InputSystem.InputAction;
 
 public class Player : MonoBehaviour
 {
-    public int lanePos;
-    public float laneThickness = 3;
+    private int lanePos;
+    private float laneThickness = 3;
     Rigidbody rb;
     public float laneChangeSpeed;
 
-    public TextMeshProUGUI text;
-
     [Header("Ground Check")]
-    private bool isGrounded;
+    public bool isGrounded;
     public LayerMask whatIsGround;
     public float playerHeight;
     public float jumpHeight = 15;
@@ -47,7 +44,7 @@ public class Player : MonoBehaviour
 
     public void CheckInput()
     {
-        
+
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             if (lanePos > 0 && canMove)
@@ -75,41 +72,14 @@ public class Player : MonoBehaviour
 
     public void HitNote(CallbackContext ctx)
     {
-        
-        if(isInNote && note != null && ctx.performed)
+
+        if (isInNote && note != null && ctx.performed)
         {
             float noteTime = Conductor.Instance.startSongPosition + note.time;
             float keyHitTime = (float)AudioSettings.dspTime;
             Events.onNoteHit.Invoke(Math.Abs(keyHitTime - noteTime), note);
-            /*string lastSource = "HitSound";
-            noteHits.Add(Math.Abs(keyHitTime - noteTime));
-            UpdateText();
-            if(lastSource == "HitSound")
-            {
-                FindObjectOfType<SoundManager>().Play("HitSound2");
-                lastSource = "HitSound2";
-            } else
-            {
-                FindObjectOfType<SoundManager>().Play("HitSound");
-                lastSource = "HitSound";
-            }
-            
-            Debug.Log($"Hit Time: {keyHitTime} Note Time: {noteTime} Difference: {keyHitTime - noteTime}");*/
         }
     }
-
-    private void UpdateText()
-    {
-        float total = 0;
-        foreach(float hitTime in noteHits)
-        {
-            total += hitTime;
-        }
-        total /= noteHits.Count;
-
-        text.text = "Avg MS off: " + Math.Round(total * 1000, 0).ToString();
-    }
-
     public void MoveLeft()
     {
         lanePos--;
@@ -124,7 +94,8 @@ public class Player : MonoBehaviour
 
     private IEnumerator ChangeLane(Vector3 target)
     {
-        while(transform.position.x - target.x > 0.1f) {
+        while (transform.position.x - target.x > 0.1f)
+        {
             canMove = false;
             transform.position = new Vector3(Mathf.Lerp(transform.position.x, target.x, laneChangeSpeed * Time.deltaTime), transform.position.y, transform.position.z);
             yield return new WaitForFixedUpdate();
@@ -164,7 +135,7 @@ public class Player : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    
+
 
     private void OnTriggerEnter(Collider other)
     {

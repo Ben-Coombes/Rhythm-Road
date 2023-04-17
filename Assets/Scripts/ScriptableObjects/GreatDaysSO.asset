@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70eeff80b40533949accac8d1285663b, type: 3}
   m_Name: GreatDaysSO
   m_EditorClassIdentifier: 
-  songName: Great Days
+  songTitle: Great Days
+  songLength: 1:21
+  songDifficulty: 3.47
   songAudio: {fileID: 8300000, guid: 32622b4b95c9a4545a3e9281ee435f7b, type: 3}
   songCSVFilePath: Great Days/greatdays
-  offset: -79
+  offset: 0

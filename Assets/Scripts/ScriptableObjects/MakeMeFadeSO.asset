@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70eeff80b40533949accac8d1285663b, type: 3}
   m_Name: MakeMeFadeSO
   m_EditorClassIdentifier: 
-  songName: Make Me Fade
+  songTitle: Make Me Fade
+  songLength: 4:37
+  songDifficulty: 3.9
   songAudio: {fileID: 8300000, guid: 13f84677753ce9d4da7c307a5bb14d4c, type: 3}
   songCSVFilePath: Make Me Fade/makemefade
   offset: 0

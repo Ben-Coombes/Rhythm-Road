@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70eeff80b40533949accac8d1285663b, type: 3}
   m_Name: RainbowRoadSO
   m_EditorClassIdentifier: 
-  songName: Rainbow Road
+  songTitle: Rainbow Road
+  songLength: 2:53
+  songDifficulty: 4.22
   songAudio: {fileID: 8300000, guid: 88ef053aa3ffd704f9c2785f0ea36af5, type: 3}
   songCSVFilePath: Rainbow Road/rainbowroad
-  offset: -50
+  offset: 0

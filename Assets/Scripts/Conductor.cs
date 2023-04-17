@@ -45,6 +45,10 @@ public class Conductor : MonoBehaviour
 );
 
 
+
+
+
+        FindObjectOfType<SoundManager>().Play("SoundTrack1");
         foreach (string str in lines)
         {
             if (str.Length > 1)
@@ -68,21 +72,18 @@ public class Conductor : MonoBehaviour
                     obj = Instantiate(objectToSpawn);
                     speed = obj.GetComponent<Note>().speed;
                     obj.GetComponent<Note>().time = timeInMS / 1000;
-                    zPos = timeInMS / (1f / speed * 1000);
+                    zPos = (timeInMS - songposition) / (1f / speed * 1000);
                     obj.transform.position = new Vector3(laneXPos[laneNum], obj.transform.position.y, zPos);
                 }
                 else
                 {
                     obj = Instantiate(objectToSpawn);
                     speed = obj.GetComponent<MoveObstacle>().speed;
-                    zPos = timeInMS / (1f / speed * 1000);
+                    zPos = (timeInMS - songposition) / (1f / speed * 1000);
                     obj.transform.position = new Vector3(laneXPos[laneNum], obj.transform.position.y, zPos);
                 }
             }
         }
-
-
-        FindObjectOfType<SoundManager>().Play("SoundTrack1");
         pitch = FindObjectOfType<SoundManager>().GetAudioSource("SoundTrack1").pitch;
         startSongPosition = (float)AudioSettings.dspTime;
         noteStartTime = (float)AudioSettings.dspTime + noteTimes[noteCounter];
