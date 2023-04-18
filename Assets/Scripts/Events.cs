@@ -10,6 +10,7 @@ public static class Events
     public static readonly Evt<float, Note> onNoteHit = new Evt<float, Note>();
     public static readonly Evt onNoteMiss = new Evt();
     public static readonly Evt<int, int> onScoreChanged = new Evt<int, int>();
+    public static readonly Evt onGameOverTrigger = new Evt();
 }
 
 public class Evt
