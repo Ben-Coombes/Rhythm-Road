@@ -17,7 +17,7 @@ public class Conductor : MonoBehaviour
     float pitch;
     float noteStartTime;
     int noteCounter = 0;
-    public GameObject fadeEffect;
+    
     // Start is called before the first frame update
     private void Awake()
     {
@@ -35,19 +35,7 @@ public class Conductor : MonoBehaviour
 
 
     }
-    private void OnEnable()
-    {
-        Events.onGameOverTrigger.AddListener(startGameOverFade);
-    }
-    private void OnDisable()
-    {
-        Events.onGameOverTrigger.RemoveListener(startGameOverFade);
-    }
-
-    public void startGameOverFade()
-    {
-        fadeEffect.SetActive(true);
-    }
+    
 
     IEnumerator StartLevelCountdown()
     {
