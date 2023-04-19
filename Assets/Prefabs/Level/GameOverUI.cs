@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class GameOverUI : MonoBehaviour
 {
+    public GameObject mainCam;
     public GameObject fadeToBlackEffect;
     public GameObject fadeToClearEffect;
     public GameObject gameOverScreen;
+    public GameObject gameOverArea;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,8 @@ public class GameOverUI : MonoBehaviour
     IEnumerator fadeToBlackTimer()
     {
         yield return new WaitForSeconds(3);
+        gameOverArea.SetActive(true);
+        mainCam.SetActive(false);
         startClearFade();
     }
 
