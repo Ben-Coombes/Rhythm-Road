@@ -6,6 +6,7 @@ public class Note : MonoBehaviour
     public float speed = 20f;
     public float time;
     Vector3 endPositon;
+    public bool isHit;
     public TextMeshProUGUI text;
     public Color[] colors;
     private Animation anim;
@@ -17,6 +18,7 @@ public class Note : MonoBehaviour
         endPositon = new Vector3(transform.position.x, transform.position.y, 0);
         anim = GetComponent<Animation>();
         boxCollider = GetComponent<BoxCollider>();
+        isHit = false;
     }
     void FixedUpdate()
     {
@@ -34,8 +36,11 @@ public class Note : MonoBehaviour
 
     public void Hit(int score)
     {
+        isHit = true;
         text.gameObject.SetActive(true);
         text.text = score.ToString();
+        anim.Play("NoteHit");
+        boxCollider.enabled = false;
         if (score == 300)
         {
             text.color = colors[0];
@@ -48,8 +53,7 @@ public class Note : MonoBehaviour
         {
             text.color = colors[2];
         }
-        anim.Play("NoteHit");
-        boxCollider.enabled = false;
+
     }
 
     public void HitAnimFinished()

@@ -113,7 +113,7 @@ public class Conductor : MonoBehaviour
     {
         songposition = ((float)AudioSettings.dspTime - startSongPosition) * pitch - offset;
         text.text = $"{songposition + offset}";
-        ScheduleHitSounds();
+        //ScheduleHitSounds();
     }
 
     void ScheduleHitSounds()

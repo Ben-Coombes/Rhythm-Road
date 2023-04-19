@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
     public void HitNote(CallbackContext ctx)
     {
 
-        if (isInNote && note != null && ctx.performed)
+        if (isInNote && note.isHit == false && ctx.performed)
         {
             float noteTime = Conductor.Instance.startSongPosition + note.time;
             float keyHitTime = (float)AudioSettings.dspTime;

@@ -19,7 +19,7 @@ public class ScoreManager : MonoBehaviour
         currentCombo = 0;
         highestCombo = 0;
         accuracy = 0;
-        overallDifficulty = 3;
+        overallDifficulty = 9;
     }
 
     // Update is called once per frame
