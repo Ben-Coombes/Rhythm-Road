@@ -17,7 +17,7 @@ public class Conductor : MonoBehaviour
     float pitch;
     float noteStartTime;
     int noteCounter = 0;
-    
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -35,7 +35,7 @@ public class Conductor : MonoBehaviour
 
 
     }
-    
+
 
     IEnumerator StartLevelCountdown()
     {
@@ -113,12 +113,13 @@ public class Conductor : MonoBehaviour
     {
         songposition = ((float)AudioSettings.dspTime - startSongPosition) * pitch - offset;
         text.text = $"{songposition + offset}";
-        //ScheduleHitSounds();
+        ScheduleHitSounds();
     }
 
     void ScheduleHitSounds()
     {
-        if (AudioSettings.dspTime > noteStartTime)
+
+        if (AudioSettings.dspTime > noteStartTime && GameManager.Instance.currentState == GameState.Playing)
         {
             noteStartTime = startSongPosition + noteTimes[noteCounter];
             if (noteCounter % 2 == 0)

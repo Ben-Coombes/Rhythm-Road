@@ -1,12 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
     int perfectHits, goodHits, badHits, misses;
-    int overallDifficulty = 4;
+    float accuracy;
+    string grade;
+    int overallDifficulty;
     int score;
     int currentCombo;
     int highestCombo;
@@ -19,12 +18,14 @@ public class ScoreManager : MonoBehaviour
         score = 0;
         currentCombo = 0;
         highestCombo = 0;
+        accuracy = 0;
+        overallDifficulty = 3;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private void OnNoteHit(float hitWindow, Note note)
     {
@@ -41,24 +42,28 @@ public class ScoreManager : MonoBehaviour
         if (currentCombo > highestCombo)
             highestCombo = currentCombo;
 
-        Destroy(note.gameObject);
+        CalculateAccuracy();
 
-        Events.onScoreChanged.Invoke(score, currentCombo);
+        Events.onScoreChanged.Invoke(score, currentCombo, accuracy);
+        note.Hit(hitValue);
     }
 
     private int CalculateHitValue(float hitWindow)
     {
+        Debug.Log(hitWindow);
         int hitValue = 0;
 
-        if(hitWindow < (80 - 6 * overallDifficulty))
+        if (hitWindow < (80 - 6 * overallDifficulty))
         {
             hitValue = 300;
             perfectHits++;
-        } else if(hitWindow < (140 - 8 * overallDifficulty))
+        }
+        else if (hitWindow < (140 - 8 * overallDifficulty))
         {
             hitValue = 100;
             goodHits++;
-        } else
+        }
+        else
         {
             hitValue = 50;
             badHits++;
@@ -70,16 +75,53 @@ public class ScoreManager : MonoBehaviour
     {
         currentCombo = 0;
         misses++;
-        Events.onScoreChanged.Invoke(score, currentCombo);
+        CalculateAccuracy();
+        Events.onScoreChanged.Invoke(score, currentCombo, accuracy);
+    }
+
+    private void CalculateAccuracy()
+    {
+        accuracy = (float)(300 * perfectHits + 100 * goodHits + 50 * badHits) / (300 * (perfectHits + goodHits + badHits + misses));
+        accuracy *= 100;
+    }
+
+    private void CalculateGrade()
+    {
+        int totalNotes = perfectHits + goodHits + badHits + misses;
+        float percentagePerfect = (float)(perfectHits / totalNotes) * 100;
+        float percentageBad = (float)(badHits / totalNotes) * 100;
+        if (misses == 0 && percentagePerfect >= 90 && percentageBad <= 1)
+        {
+            grade = "S";
+        }
+        else if (percentagePerfect >= 80 && misses == 0 || percentagePerfect >= 90)
+        {
+            grade = "A";
+        }
+        else if (percentagePerfect >= 70 && misses == 0 || percentagePerfect >= 80)
+        {
+            grade = "B";
+        }
+        else if (percentagePerfect >= 60)
+        {
+            grade = "C";
+        }
+        else
+        {
+            grade = "D";
+        }
+        PlayerPrefs.SetString(GameManager.Instance.currentSelectedMusic.songTitle, grade);
     }
     private void OnEnable()
     {
+        Events.onGameOverTrigger.AddListener(CalculateGrade);
         Events.onNoteHit.AddListener(OnNoteHit);
         Events.onNoteMiss.AddListener(OnNoteMiss);
     }
 
     private void OnDisable()
     {
+        Events.onGameOverTrigger.RemoveListener(CalculateGrade);
         Events.onNoteHit.RemoveListener(OnNoteHit);
         Events.onNoteMiss.RemoveListener(OnNoteMiss);
     }

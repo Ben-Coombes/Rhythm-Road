@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
         {
             float noteTime = Conductor.Instance.startSongPosition + note.time;
             float keyHitTime = (float)AudioSettings.dspTime;
-            Events.onNoteHit.Invoke(Math.Abs(keyHitTime - noteTime), note);
+            Events.onNoteHit.Invoke(Math.Abs(keyHitTime - noteTime) * 1000, note);
         }
     }
     public void MoveLeft()
