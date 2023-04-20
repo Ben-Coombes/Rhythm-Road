@@ -50,6 +50,9 @@ public class Conductor : MonoBehaviour
     {
         SpawnNotesAndObstacles();
         StartCoroutine(StartLevelCountdown());
+        FindObjectOfType<SoundManager>().GetAudioSource("SoundTrack1").volume = PlayerPrefs.GetFloat("music", 0.5f);
+        FindObjectOfType<SoundManager>().GetAudioSource("HitSound").volume = PlayerPrefs.GetFloat("sfx", 0.5f);
+        FindObjectOfType<SoundManager>().GetAudioSource("HitSound2").volume = PlayerPrefs.GetFloat("sfx", 0.5f);
     }
     public void StartLevel()
     {
@@ -109,7 +112,8 @@ public class Conductor : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        songposition = ((float)AudioSettings.dspTime - startSongPosition) * pitch - offset;
+        if (GameManager.Instance.currentState == GameState.Playing)
+            songposition = ((float)AudioSettings.dspTime - startSongPosition) * pitch - offset;
         //ScheduleHitSounds();
     }
 
