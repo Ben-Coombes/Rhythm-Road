@@ -21,6 +21,7 @@ public class ScoreUI : MonoBehaviour
         float songTime = songLength.Minute * 60 + songLength.Second;
         Debug.Log("Song Length " + songTime + "Song Position " + Conductor.Instance.songposition);
         timeImage.fillAmount = Conductor.Instance.songposition / songTime;
+        accuracyText.text = Conductor.Instance.songposition.ToString();
     }
     public void OnGameOverTrigger()
     {
