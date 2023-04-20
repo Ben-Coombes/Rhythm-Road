@@ -10,7 +10,7 @@ public class ScoreManager : MonoBehaviour
     int overallDifficulty;
     public int score;
     int currentCombo;
-    int highestCombo;
+    public int highestCombo;
 
     private void Awake()
     {

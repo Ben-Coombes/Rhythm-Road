@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameOverScreen : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameOverScreen : MonoBehaviour
     public TextMeshProUGUI _50text;
     public TextMeshProUGUI missText;
     public TextMeshProUGUI letterGradeText;
+    public TextMeshProUGUI highestComboText;
     private string grade;
 
     public Color[] gradeColors;
@@ -34,6 +36,7 @@ public class GameOverScreen : MonoBehaviour
         _50text.text = ScoreManager.Instance.badHits.ToString();
         missText.text = ScoreManager.Instance.misses.ToString();
         letterGradeText.text = ScoreManager.Instance.grade.ToString();
+        highestComboText.text = ScoreManager.Instance.highestCombo.ToString() + "x";
 
         switch (grade)
         {
@@ -58,6 +61,11 @@ public class GameOverScreen : MonoBehaviour
         }
         letterGradeText.color = color;
 
+    }
+
+    public void returnToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     // Update is called once per frame
