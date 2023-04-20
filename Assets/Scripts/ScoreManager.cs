@@ -2,13 +2,31 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    int perfectHits, goodHits, badHits, misses;
-    float accuracy;
-    string grade;
+    public static ScoreManager Instance { get; set; }
+
+    public int perfectHits, goodHits, badHits, misses;
+    public float accuracy;
+    public string grade;
     int overallDifficulty;
-    int score;
+    public int score;
     int currentCombo;
     int highestCombo;
+
+    private void Awake()
+    {
+        
+        // If there is an instance, and it's not me, delete myself.
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
