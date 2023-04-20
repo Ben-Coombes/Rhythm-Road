@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songTitle: Rainbow Road
   songLength: 2:53
-  songDifficulty: 4.22
+  songDifficulty: 3.98
   songAudio: {fileID: 8300000, guid: 88ef053aa3ffd704f9c2785f0ea36af5, type: 3}
   songCSVFilePath: Rainbow Road/rainbowroad
   offset: 0

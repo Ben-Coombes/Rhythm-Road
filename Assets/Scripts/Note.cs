@@ -8,6 +8,7 @@ public class Note : MonoBehaviour
     Vector3 endPositon;
     public bool isHit;
     public TextMeshProUGUI text;
+    public GameObject canvas;
     public Color[] colors;
     private Animation anim;
     private BoxCollider boxCollider;
@@ -37,7 +38,8 @@ public class Note : MonoBehaviour
     public void Hit(int score)
     {
         isHit = true;
-        text.gameObject.SetActive(true);
+
+        canvas.gameObject.SetActive(true);
         text.text = score.ToString();
         anim.Play("NoteHit");
         boxCollider.enabled = false;
@@ -58,7 +60,8 @@ public class Note : MonoBehaviour
 
     public void HitAnimFinished()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        canvas.gameObject.SetActive(false);
     }
 
 

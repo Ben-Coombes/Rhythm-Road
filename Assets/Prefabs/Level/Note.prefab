@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5172913636580468816
 RectTransform:
   m_ObjectHideFlags: 0
@@ -100,7 +100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7675446108364256724
 RectTransform:
   m_ObjectHideFlags: 0
@@ -283,6 +283,7 @@ MonoBehaviour:
   time: 0
   isHit: 0
   text: {fileID: 786243145236698469}
+  canvas: {fileID: 3143093505414616874}
   colors:
   - {r: 0.3254902, g: 0.8862745, b: 0.039215688, a: 1}
   - {r: 0.8862745, g: 0.8509804, b: 0.039215688, a: 1}

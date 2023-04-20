@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songTitle: Make Me Fade
   songLength: 4:37
-  songDifficulty: 3.9
+  songDifficulty: 5
   songAudio: {fileID: 8300000, guid: 13f84677753ce9d4da7c307a5bb14d4c, type: 3}
   songCSVFilePath: Make Me Fade/makemefade
   offset: 0

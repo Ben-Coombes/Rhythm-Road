@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songTitle: Dead to Me
   songLength: 1:34
-  songDifficulty: 3.04
+  songDifficulty: 3.33
   songAudio: {fileID: 8300000, guid: f18f013f603dff0488ba8db9d4a427c6, type: 3}
   songCSVFilePath: Dead to Me/deadtome
   offset: 0

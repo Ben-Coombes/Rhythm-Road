@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songTitle: Great Days
   songLength: 1:21
-  songDifficulty: 3.47
+  songDifficulty: 2.87
   songAudio: {fileID: 8300000, guid: 32622b4b95c9a4545a3e9281ee435f7b, type: 3}
   songCSVFilePath: Great Days/greatdays
   offset: 0
