@@ -4,8 +4,10 @@ using UnityEngine.UI;
 public class SettingsMenu : MonoBehaviour
 {
     [SerializeField] private Slider musicSlider, sfxSlider;
+    [SerializeField] private AudioSource musicSource;
     public void OnMusicVolumeChanged()
     {
+        musicSource.volume = musicSlider.value;
         PlayerPrefs.SetFloat("music", musicSlider.value);
     }
 
