@@ -131,7 +131,7 @@ public class ScoreManager : MonoBehaviour
             grade = Grade.D;
         }
         Grade currentGrade;
-        if (Enum.TryParse(PlayerPrefs.GetString(GameManager.Instance.currentSelectedMusic.songTitle), out currentGrade))
+        if (Enum.TryParse(PlayerPrefs.GetString(GameManager.Instance.currentSelectedMusic.songTitle, "_"), out currentGrade))
         {
             if ((int)currentGrade < (int)grade)
             {
