@@ -1748,6 +1748,13 @@ MonoBehaviour:
   _50text: {fileID: 813495049}
   missText: {fileID: 308621591}
   letterGradeText: {fileID: 1654519075}
+  gradeColors:
+  - {r: 0.42352942, g: 0.42352942, b: 0.42352942, a: 1}
+  - {r: 1, g: 0.23921569, b: 0.23921569, a: 1}
+  - {r: 0.6431373, g: 0.02745098, b: 0.8784314, a: 1}
+  - {r: 0, g: 0.4862745, b: 1, a: 1}
+  - {r: 0.019607844, g: 0.81960785, b: 0.27058825, a: 1}
+  - {r: 1, g: 0.827451, b: 0.29803923, a: 1}
 --- !u!1 &441119308
 GameObject:
   m_ObjectHideFlags: 0
@@ -8468,7 +8475,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6736855831117255462}
-  m_LocalRotation: {x: -0.115854666, y: 0.012060821, z: -0.012696255, w: 0.9931118}
+  m_LocalRotation: {x: -0.11585467, y: 0.012060821, z: -0.012696256, w: 0.9931118}
   m_LocalPosition: {x: -1.11758706e-10, y: 0.011997961, z: 1.4901161e-10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

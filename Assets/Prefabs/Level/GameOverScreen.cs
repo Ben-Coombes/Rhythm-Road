@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameOverScreen : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class GameOverScreen : MonoBehaviour
     public TextMeshProUGUI _50text;
     public TextMeshProUGUI missText;
     public TextMeshProUGUI letterGradeText;
+    private string grade;
+
+    public Color[] gradeColors;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +24,8 @@ public class GameOverScreen : MonoBehaviour
     }
     private void OnEnable()
     {
+        Color color = gradeColors[0];
+        grade = ScoreManager.Instance.grade.ToString();
         songTitleText.text = GameManager.Instance.currentSelectedMusic.songTitle.ToString();
         scoreText.text = ScoreManager.Instance.score.ToString();
         accuracyText.text = ScoreManager.Instance.accuracy.ToString("#.##") + "%";
@@ -28,6 +34,30 @@ public class GameOverScreen : MonoBehaviour
         _50text.text = ScoreManager.Instance.badHits.ToString();
         missText.text = ScoreManager.Instance.misses.ToString();
         letterGradeText.text = ScoreManager.Instance.grade.ToString();
+
+        switch (grade)
+        {
+            case "~":
+                color = gradeColors[0];
+                break;
+            case "D":
+                color = gradeColors[1];
+                break;
+            case "C":
+                color = gradeColors[2];
+                break;
+            case "B":
+                color = gradeColors[3];
+                break;
+            case "A":
+                color = gradeColors[4];
+                break;
+            case "S":
+                color = gradeColors[5];
+                break;
+        }
+        letterGradeText.color = color;
+
     }
 
     // Update is called once per frame
