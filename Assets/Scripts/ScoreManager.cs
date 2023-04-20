@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
@@ -6,7 +7,7 @@ public class ScoreManager : MonoBehaviour
 
     public int perfectHits, goodHits, badHits, misses;
     public float accuracy;
-    public string grade;
+    public Grade grade;
     int overallDifficulty;
     public int score;
     int currentCombo;
@@ -111,25 +112,32 @@ public class ScoreManager : MonoBehaviour
         Debug.Log("Percentage Perfect: " + percentagePerfect.ToString());
         if (misses == 0 && percentagePerfect >= 90 && percentageBad <= 1)
         {
-            grade = "S";
+            grade = Grade.S;
         }
         else if (percentagePerfect >= 80 && misses == 0 || percentagePerfect >= 90)
         {
-            grade = "A";
+            grade = Grade.A;
         }
         else if (percentagePerfect >= 70 && misses == 0 || percentagePerfect >= 80)
         {
-            grade = "B";
+            grade = Grade.B;
         }
         else if (percentagePerfect >= 60)
         {
-            grade = "C";
+            grade = Grade.C;
         }
         else
         {
-            grade = "D";
+            grade = Grade.D;
         }
-        PlayerPrefs.SetString(GameManager.Instance.currentSelectedMusic.songTitle, grade);
+        Grade currentGrade;
+        if (Enum.TryParse(PlayerPrefs.GetString(GameManager.Instance.currentSelectedMusic.songTitle), out currentGrade))
+        {
+            if ((int)currentGrade < (int)grade)
+            {
+                PlayerPrefs.SetString(GameManager.Instance.currentSelectedMusic.songTitle, grade.ToString());
+            }
+        }
     }
     private void OnEnable()
     {
@@ -148,9 +156,10 @@ public class ScoreManager : MonoBehaviour
 
 public enum Grade
 {
-    D = 0,
-    C = 1,
-    B = 2,
-    A = 3,
-    S = 4,
+    _ = 0,
+    D = 1,
+    C = 2,
+    B = 3,
+    A = 4,
+    S = 5,
 }

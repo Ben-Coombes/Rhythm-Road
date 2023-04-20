@@ -15,11 +15,11 @@ public class MusicSOUI : MonoBehaviour
     {
         title.text = musicSO.songTitle;
         length.text = musicSO.songLength;
-        string strGrade = PlayerPrefs.GetString(musicSO.songTitle, "~");
+        string strGrade = PlayerPrefs.GetString(musicSO.songTitle, "_");
         Color color = gradeColors[0];
         switch (strGrade)
         {
-            case "~":
+            case "_":
                 color = gradeColors[0];
                 break;
             case "D":
@@ -38,7 +38,10 @@ public class MusicSOUI : MonoBehaviour
                 color = gradeColors[5];
                 break;
         }
-
+        if (strGrade == "_")
+        {
+            strGrade = "~";
+        }
         grade.text = strGrade;
         grade.color = color;
         gradeCircle.color = color;

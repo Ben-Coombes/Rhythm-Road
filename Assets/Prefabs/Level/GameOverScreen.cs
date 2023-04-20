@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameOverScreen : MonoBehaviour
@@ -22,7 +19,7 @@ public class GameOverScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
     private void OnEnable()
     {
@@ -40,9 +37,6 @@ public class GameOverScreen : MonoBehaviour
 
         switch (grade)
         {
-            case "~":
-                color = gradeColors[0];
-                break;
             case "D":
                 color = gradeColors[1];
                 break;
@@ -71,6 +65,6 @@ public class GameOverScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
