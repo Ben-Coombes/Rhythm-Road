@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
@@ -9,13 +8,6 @@ public class MenuController : MonoBehaviour
         GameManager.Instance.ChangeState(GameState.Menu);
     }
 
-    // Start is called before the first frame update
-
-    public void StartGame()
-    {
-        SceneManager.LoadScene(1);
-
-    }
     public void QuitGame()
     {
 #if UNITY_EDITOR

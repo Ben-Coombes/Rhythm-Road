@@ -145,3 +145,12 @@ public class ScoreManager : MonoBehaviour
         Events.onNoteMiss.RemoveListener(OnNoteMiss);
     }
 }
+
+public enum Grade
+{
+    D = 0,
+    C = 1,
+    B = 2,
+    A = 3,
+    S = 4,
+}
