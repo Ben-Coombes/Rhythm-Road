@@ -14,7 +14,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Awake()
     {
-        
+
         // If there is an instance, and it's not me, delete myself.
 
         if (Instance != null && Instance != this)
@@ -37,7 +37,7 @@ public class ScoreManager : MonoBehaviour
         currentCombo = 0;
         highestCombo = 0;
         accuracy = 0;
-        overallDifficulty = 9;
+        overallDifficulty = 8;
     }
 
     // Update is called once per frame
@@ -106,8 +106,9 @@ public class ScoreManager : MonoBehaviour
     private void CalculateGrade()
     {
         int totalNotes = perfectHits + goodHits + badHits + misses;
-        float percentagePerfect = (float)(perfectHits / totalNotes) * 100;
-        float percentageBad = (float)(badHits / totalNotes) * 100;
+        float percentagePerfect = ((float)perfectHits / totalNotes) * 100;
+        float percentageBad = ((float)badHits / totalNotes) * 100;
+        Debug.Log("Percentage Perfect: " + percentagePerfect.ToString());
         if (misses == 0 && percentagePerfect >= 90 && percentageBad <= 1)
         {
             grade = "S";

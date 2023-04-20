@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class Conductor : MonoBehaviour
@@ -12,7 +11,6 @@ public class Conductor : MonoBehaviour
     public float offset = 35;
     public List<ObstacleData> obstacles;
     public List<float> laneXPos;
-    public TextMeshProUGUI text;
     public List<float> noteTimes;
     float pitch;
     float noteStartTime;
@@ -112,7 +110,6 @@ public class Conductor : MonoBehaviour
     void FixedUpdate()
     {
         songposition = ((float)AudioSettings.dspTime - startSongPosition) * pitch - offset;
-        text.text = $"{songposition + offset}";
         //ScheduleHitSounds();
     }
 
